@@ -4,7 +4,7 @@ import Controls from './Controls'
 import styled from "styled-components"
 
 export default function ToDo() {
-    const [tasks, setTasks] = useState([]);
+    const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("tasks"))||[]);
     const [newTask, setNewTask] = useState("");
     const handleChange = (e) => {
         setNewTask(e.target.value);
@@ -14,6 +14,7 @@ export default function ToDo() {
         //save the value of newTask into task state
         setTasks([...tasks, newTask]);
         //update the local storage with the new task
+        localStorage.setItem("tasks", JSON.stringify([...tasks, newTask]))
     }
     return (
         <TodoContainer>
