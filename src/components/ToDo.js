@@ -1,17 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Task from './partials/Task'
 import Controls from './Controls'
 import styled from "styled-components"
 
 export default function ToDo() {
-  return (
-      <TodoContainer>
-          <h1>To Do List</h1>
-    <InputStyle/>
-    <Task />
-    <Controls />
-    </TodoContainer>
-  )
+    const [tasks, setTasks] = useState([]);
+    const [newTask, setNewTask] = useState("");
+    const handleChange = (e) => {
+        setNewTask(e.target.value);
+    }
+    const handleNewTask = (e) => {
+        e.preventDefault();
+        //save the value of newTask into task state
+        setTasks([...tasks, newTask]);
+        //update the local storage with the new task
+    }
+    return (
+        <TodoContainer>
+            <h1>To Do List</h1>
+            <InputStyle value={newTask} onChange={handleChange} />
+            <button onClick={handleNewTask}>Create</button>
+            {tasks.map((task, i) => {
+                return (
+                    <Task key={i} task={task} />
+                )
+            })}
+            
+            <Controls />
+        </TodoContainer>
+    )
 }
 
 const TodoContainer = styled.div`
