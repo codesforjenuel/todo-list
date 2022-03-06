@@ -1,8 +1,9 @@
 import React from 'react'
+import styled from "styled-components"
 
 export default function Controls() {
   return (
-    <div>
+    <ControlsContainer>
         <p>2 Task Left</p>
         <div>
             <button>All</button>
@@ -12,6 +13,16 @@ export default function Controls() {
         <div>
             <button>Delete Completed Task</button>
         </div>
-    </div>
+    </ControlsContainer>
   )
 }
+
+const ControlsContainer = styled.div `
+display:flex ;
+flex-direction:row ;
+justify-content: space-between;
+align-items: center ;
+background-color:lightgray ;
+
+border-radius: 0px 0px 10px 10px ;
+`

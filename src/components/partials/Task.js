@@ -1,13 +1,20 @@
 import React from 'react'
-
+import styled from "styled-components"
 export default function Task() {
   return (
     
-        <div>
+        <TaskContainer>
         <input type="checkbox" />
         <p>Task Name</p>
         <button>Delete</button>
-    </div>
+    </TaskContainer>
     
   )
 }
+ const TaskContainer = styled.div`
+ display:flex ;
+ flex-direction: row ;
+ justify-content: space-between ;
+ align-items: center ;
+ background-color:darkgray ;
+ `
