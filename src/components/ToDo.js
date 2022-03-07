@@ -21,7 +21,12 @@ export default function ToDo() {
             <InputStyle value={inputText} onChange={handleinputText} />
             <button onClick={submitTodoHandler}>Create</button>
             {todos.map((todo) => (
-                <Task key={todo.id} text={todo.text}  />
+                <Task 
+                key={todo.id} 
+                text={todo.text}
+                todos={todos}
+                setTodos={setTodos}
+                todo={todo} />
 
             ))}
 
