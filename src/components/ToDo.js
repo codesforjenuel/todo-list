@@ -4,29 +4,27 @@ import Controls from './Controls'
 import styled from "styled-components"
 
 export default function ToDo() {
-    const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("tasks"))||[]);
-    const [newTask, setNewTask] = useState("");
-    const handleChange = (e) => {
-        setNewTask(e.target.value);
-    }
-    const handleNewTask = (e) => {
+    const [todos, setTodos] = useState([]);
+    const [inputText, setinputText] = useState("");
+
+    const submitTodoHandler = (e) => {
         e.preventDefault();
-        //save the value of newTask into task state
-        setTasks([...tasks, newTask]);
-        //update the local storage with the new task
-        localStorage.setItem("tasks", JSON.stringify([...tasks, newTask]))
+        setTodos([...todos, { text: inputText, completed: false, id: Math.random() * 1000 }])
+    }
+    const handleinputText = (e) => {
+        setinputText(e.target.value);
+
     }
     return (
         <TodoContainer>
             <h1>To Do List</h1>
-            <InputStyle value={newTask} onChange={handleChange} />
-            <button onClick={handleNewTask}>Create</button>
-            {tasks.map((task, i) => {
-                return (
-                    <Task key={i} task={task} />
-                )
-            })}
-            
+            <InputStyle value={inputText} onChange={handleinputText} />
+            <button onClick={submitTodoHandler}>Create</button>
+            {todos.map((todo) => (
+                <Task key={todo.id} text={todo.text}  />
+
+            ))}
+
             <Controls />
         </TodoContainer>
     )
@@ -36,7 +34,7 @@ const TodoContainer = styled.div`
 backdrop-filter: blur(10px)  ;
 border-radius:10px ;
 width:120% ;
-margin-top:40% ;
+margin-top:15% ;
 box-shadow: 0px 0px 15px black; 
 text-align:center ;
 background-color:none ;

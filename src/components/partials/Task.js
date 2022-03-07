@@ -1,12 +1,19 @@
 import React from 'react'
 import styled from "styled-components"
-export default function Task({ task }) {
+
+
+export default function Task({ text }) {
+  const delKey = () => {
+      localStorage.removeItem("tasks")
+  }
+
+       
     return (
 
-        <TaskContainer>
+        <TaskContainer className='taskCon'>
             <input type="checkbox" />
-            <p>{task}</p>
-            <button>Delete</button>
+            <p>{text}</p>
+            <button onClick={delKey}>Delete</button>
         </TaskContainer>
 
     )
