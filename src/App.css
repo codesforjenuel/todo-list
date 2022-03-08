@@ -10,6 +10,8 @@ body {
 
 .completed {
   width: 100%;
+  height: 30px;
+  border: none;
   background-color: aquamarine;
 }
 

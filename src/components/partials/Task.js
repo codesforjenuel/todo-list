@@ -19,15 +19,22 @@ const completeHandler = () => {
 }  
     return (
 
-        <TaskContainer className='taskCon'>
-            <button onClick={completeHandler}>Completed</button>
+        <TaskContainer >
+            <Btn onClick={completeHandler}>Completed</Btn>
             <p className={`todo-item ${todo.completed ? "completed" : ''}`}>{text}</p>
-            <button onClick={deleteHandler}>Delete</button>
+            <Btn onClick={deleteHandler}>Delete</Btn>
         </TaskContainer>
 
     )
 }
+const Btn = styled.button`
+height:30px ;
+
+
+`
+
 const TaskContainer = styled.div`
+height:30px ;
  display:flex ;
  flex-direction: row ;
  justify-content: space-between ;

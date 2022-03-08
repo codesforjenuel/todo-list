@@ -7,6 +7,8 @@ export default function ToDo() {
     const [todos, setTodos] = useState([]);
     const [inputText, setinputText] = useState("");
 
+    const [filteredTodos, setFilteredTodos] = useState([])
+
     const submitTodoHandler = (e) => {
         e.preventDefault();
         setTodos([...todos, { text: inputText, completed: false, id: Math.random() * 1000 }])
@@ -15,25 +17,46 @@ export default function ToDo() {
         setinputText(e.target.value);
 
     }
+
+
     return (
         <TodoContainer>
             <h1>To Do List</h1>
             <InputStyle value={inputText} onChange={handleinputText} />
-            <button onClick={submitTodoHandler}>Create</button>
-            {todos.map((todo) => (
-                <Task 
-                key={todo.id} 
-                text={todo.text}
-                todos={todos}
-                setTodos={setTodos}
-                todo={todo} />
+            <Btn onClick={submitTodoHandler}>Create</Btn>
+            {filteredTodos.map((todo) => (
+                <Task
+                    key={todo.id}
+                    text={todo.text}
+                    todos={todos}
+                    setTodos={setTodos}
+                    todo={todo} />
 
             ))}
 
-            <Controls />
+            <Controls
+            
+            setTodos={setTodos}
+                todos={todos}
+                setFilteredTodos={setFilteredTodos}
+                filteredTodos={filteredTodos} />
         </TodoContainer>
     )
 }
+
+const Btn = styled.button`
+margin:10px ;
+background:none ;
+height: 20%;
+width: 80px;
+border-radius: 5px ;
+border:2px solid aquamarine ;
+&:hover{
+  background-color:aquamarine ;
+  transition-duration: 500ms ;
+}
+
+`
 
 const TodoContainer = styled.div`
 backdrop-filter: blur(10px)  ;
@@ -47,5 +70,9 @@ background-color:none ;
 
 const InputStyle = styled.input`
 border-radius: 10px ;
-border: 1px solid black ;
+border: 0px solid ;
+
+&:focus {
+    outline:none ;
+}
 `;
