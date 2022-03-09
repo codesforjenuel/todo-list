@@ -35,8 +35,8 @@ export default function ToDo() {
             ))}
 
             <Controls
-            
-            setTodos={setTodos}
+
+                setTodos={setTodos}
                 todos={todos}
                 setFilteredTodos={setFilteredTodos}
                 filteredTodos={filteredTodos} />

@@ -6,12 +6,10 @@ export default function Controls({ todos, setFilteredTodos, setTodos }) {
   const [status, setStatus] = useState('all')
 
   const deleteAllHandler = () => {
-    if (setFilteredTodos(todos.filter((todo) => todo.completed === false)))  {
-todos.remove(todos);
-setTodos(localStorage.removeItem(todos.value))
-    }
+    setTodos(todos.filter((todo) => todo.completed === false))
+    
   }
- const filterHandler = () => {
+  const filterHandler = () => {
     switch (status) {
       case 'completed':
         setFilteredTodos(todos.filter((todo) => todo.completed === true))
@@ -24,7 +22,7 @@ setTodos(localStorage.removeItem(todos.value))
         break;
     }
   }
- 
+
   const saveLocalTodos = () => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }
@@ -32,21 +30,21 @@ setTodos(localStorage.removeItem(todos.value))
     if (localStorage.getItem("todos") === null) {
       localStorage.setItem("todos", JSON.stringify([]));
     } else {
-    let todoLocal =  JSON.parse(localStorage.getItem("todos"))
-    setTodos(todoLocal);
+      let todoLocal = JSON.parse(localStorage.getItem("todos"))
+      setTodos(todoLocal);
     }
   }
 
   useEffect(() => {
     getLocalTodos();
   }, []);
- useEffect(() => {
+  useEffect(() => {
     filterHandler();
     saveLocalTodos();
   }, [todos, status]);
-  
- 
-  
+
+
+
   const statusHandler = (e) => {
     setStatus(e.target.value)
 
