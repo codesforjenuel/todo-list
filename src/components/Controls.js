@@ -54,7 +54,7 @@ export default function Controls({ todos, setFilteredTodos, setTodos }) {
 
   return (
     <ControlsContainer>
-      <p>2 Task Left</p>
+      
       <div>
 
         <Btn value="all" onClick={statusHandler} >All</Btn>
@@ -63,7 +63,7 @@ export default function Controls({ todos, setFilteredTodos, setTodos }) {
 
       </div>
       <div>
-        <button onClick={deleteAllHandler}>Delete Completed Task</button>
+        <Btn onClick={deleteAllHandler}>Delete Completed</Btn>
       </div>
     </ControlsContainer>
   )
@@ -74,9 +74,9 @@ background:none ;
 height: 20%;
 width: 80px;
 border-radius: 5px ;
-border:2px solid aquamarine ;
+border:2px solid #0598FA ;
 &:hover{
-  background-color:aquamarine ;
+  background-color:#0598FA ;
   transition-duration: 500ms ;
 }
 
@@ -94,3 +94,4 @@ background-color:lightgray ;
 
 border-radius: 0px 0px 10px 10px ;
 `
+

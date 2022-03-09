@@ -29,11 +29,16 @@ const completeHandler = () => {
 }
 const Btn = styled.button`
 height:30px ;
-
-
+border: 1px solid darkgray;
+border-radius: 5px;
+&:hover{
+  background-color:gray ;
+  transition-duration: 500ms ;
+}
 `
 
 const TaskContainer = styled.div`
+border:1px solid darkgray ;
 height:30px ;
  display:flex ;
  flex-direction: row ;

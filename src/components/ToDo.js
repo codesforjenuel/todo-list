@@ -6,7 +6,7 @@ import styled from "styled-components"
 export default function ToDo() {
     const [todos, setTodos] = useState([]);
     const [inputText, setinputText] = useState("");
-
+const [JSONImport, SetJSONImport] = useState([])
     const [filteredTodos, setFilteredTodos] = useState([])
 
     const submitTodoHandler = (e) => {
@@ -17,13 +17,34 @@ export default function ToDo() {
         setinputText(e.target.value);
 
     }
+const handleJSONText = (e) => {
+    e.preventDefault();
+    SetJSONImport(e.target.value)
+}
 
 
+    const handleJSONImport = (e) => {
+        e.preventDefault();
+        const newToDos = JSON.parse(JSONImport);
+        //Map all the new task and set todos
+        setTodos( [...todos, ...newToDos.tasks]);
+    }
     return (
+        <>
         <TodoContainer>
             <h1>To Do List</h1>
+            <InputContainer>
+            <div>
+            <h2>Create Task</h2>
             <InputStyle value={inputText} onChange={handleinputText} />
             <Btn onClick={submitTodoHandler}>Create</Btn>
+            </div>
+ <div>
+            <h2>Import Via JSON</h2>
+            <InputStyle  value ={JSONImport} onChange={handleJSONText} />
+            <Btn onClick={handleJSONImport}>Import</Btn>
+        </div>
+</InputContainer>
             {filteredTodos.map((todo) => (
                 <Task
                     key={todo.id}
@@ -41,18 +62,26 @@ export default function ToDo() {
                 setFilteredTodos={setFilteredTodos}
                 filteredTodos={filteredTodos} />
         </TodoContainer>
+       
+        </>
     )
 }
 
+const InputContainer = styled.div`
+display:flex ;
+flex-direction: row ;
+justify-content: center ;
+`
+
 const Btn = styled.button`
 margin:10px ;
-background:none ;
+background:lightgray ;
 height: 20%;
 width: 80px;
 border-radius: 5px ;
-border:2px solid aquamarine ;
+border:2px solid #0598FA;
 &:hover{
-  background-color:aquamarine ;
+  background-color:#0598FA ;
   transition-duration: 500ms ;
 }
 
@@ -76,3 +105,4 @@ border: 0px solid ;
     outline:none ;
 }
 `;
+
