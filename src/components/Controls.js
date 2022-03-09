@@ -7,7 +7,7 @@ export default function Controls({ todos, setFilteredTodos, setTodos }) {
 
   const deleteAllHandler = () => {
     setTodos(todos.filter((todo) => todo.completed === false))
-    
+
   }
   const filterHandler = () => {
     switch (status) {
@@ -54,7 +54,7 @@ export default function Controls({ todos, setFilteredTodos, setTodos }) {
 
   return (
     <ControlsContainer>
-      
+
       <div>
 
         <Btn value="all" onClick={statusHandler} >All</Btn>

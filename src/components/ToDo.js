@@ -6,7 +6,7 @@ import styled from "styled-components"
 export default function ToDo() {
     const [todos, setTodos] = useState([]);
     const [inputText, setinputText] = useState("");
-const [JSONImport, SetJSONImport] = useState([])
+    const [JSONImport, SetJSONImport] = useState([])
     const [filteredTodos, setFilteredTodos] = useState([])
 
     const submitTodoHandler = (e) => {
@@ -17,52 +17,52 @@ const [JSONImport, SetJSONImport] = useState([])
         setinputText(e.target.value);
 
     }
-const handleJSONText = (e) => {
-    e.preventDefault();
-    SetJSONImport(e.target.value)
-}
+    const handleJSONText = (e) => {
+        e.preventDefault();
+        SetJSONImport(e.target.value)
+    }
 
 
     const handleJSONImport = (e) => {
         e.preventDefault();
         const newToDos = JSON.parse(JSONImport);
         //Map all the new task and set todos
-        setTodos( [...todos, ...newToDos.tasks]);
+        setTodos([...todos, ...newToDos.tasks]);
     }
     return (
         <>
-        <TodoContainer>
-            <h1>To Do List</h1>
-            <InputContainer>
-            <div>
-            <h2>Create Task</h2>
-            <InputStyle value={inputText} onChange={handleinputText} />
-            <Btn onClick={submitTodoHandler}>Create</Btn>
-            </div>
- <div>
-            <h2>Import Via JSON</h2>
-            <InputStyle  value ={JSONImport} onChange={handleJSONText} />
-            <Btn onClick={handleJSONImport}>Import</Btn>
-        </div>
-</InputContainer>
-            {filteredTodos.map((todo) => (
-                <Task
-                    key={todo.id}
-                    text={todo.text}
-                    todos={todos}
+            <TodoContainer>
+                <h1>To Do List</h1>
+                <InputContainer>
+                    <div>
+                        <h2>Create Task</h2>
+                        <InputStyle value={inputText} onChange={handleinputText} />
+                        <Btn onClick={submitTodoHandler}>Create</Btn>
+                    </div>
+                    <div>
+                        <h2>Import Via JSON</h2>
+                        <InputStyle value={JSONImport} onChange={handleJSONText} />
+                        <Btn onClick={handleJSONImport}>Import</Btn>
+                    </div>
+                </InputContainer>
+                {filteredTodos.map((todo) => (
+                    <Task
+                        key={todo.id}
+                        text={todo.text}
+                        todos={todos}
+                        setTodos={setTodos}
+                        todo={todo} />
+
+                ))}
+
+                <Controls
+
                     setTodos={setTodos}
-                    todo={todo} />
+                    todos={todos}
+                    setFilteredTodos={setFilteredTodos}
+                    filteredTodos={filteredTodos} />
+            </TodoContainer>
 
-            ))}
-
-            <Controls
-
-                setTodos={setTodos}
-                todos={todos}
-                setFilteredTodos={setFilteredTodos}
-                filteredTodos={filteredTodos} />
-        </TodoContainer>
-       
         </>
     )
 }
